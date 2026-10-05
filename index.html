@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Виртуалды зертхана — Энергия ұғымы және сақталу заңы</title>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:#eef3f8;color:#16212b;
+  }
+  .wrap{max-width:1400px;margin:0 auto;padding:22px}
+  h1{margin:0 0 6px;font-size:28px}
+  .subtitle{margin:0 0 18px;color:#5c6b78}
+  .grid{display:grid;grid-template-columns:1.35fr .9fr;gap:18px}
+  .card{
+    background:white;border:1px solid #d8e1e8;border-radius:16px;padding:16px;
+    box-shadow:0 8px 24px rgba(18,35,52,.06)
+  }
+  .card h2{font-size:18px;margin:0 0 12px}
+  .scene{position:relative;overflow:auto;background:#f7fafc;border-radius:14px;padding:12px}
+  svg{display:block;margin:auto;max-width:none}
+  .controls{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .control{padding:10px;border:1px solid #e1e7ec;border-radius:12px;background:#fbfcfe}
+  label{display:block;font-weight:650;font-size:13px;margin-bottom:7px}
+  select,input[type=range],button,input[type=number]{
+    width:100%;font:inherit
+  }
+  select,input[type=number]{
+    border:1px solid #cfd9e1;border-radius:9px;padding:8px;background:#fff
+  }
+  input[type=range]{accent-color:#426b8d}
+  button{
+    border:0;border-radius:10px;padding:9px 12px;background:#315d7c;color:#fff;font-weight:650;cursor:pointer
+  }
+  button.secondary{background:#e9eef3;color:#263744}
+  button.warn{background:#8b5b2b}
+  button:disabled{opacity:.5;cursor:not-allowed}
+  .row{display:flex;gap:8px;align-items:center}
+  .row>*{flex:1}
+  .readout{
+    padding:10px;border-radius:10px;background:#edf5fa;border:1px solid #d4e4ef;margin-top:10px;
+    font-size:14px;line-height:1.5
+  }
+  .mini{font-size:12px;color:#647482}
+  .formula{
+    background:#f6f8fa;border-left:4px solid #466f8c;padding:9px 12px;border-radius:8px;margin:8px 0;font-size:15px
+  }
+  .tasks{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .task{
+    border:1px solid #dfe6eb;border-radius:12px;padding:12px;background:#fbfdff
+  }
+  .task strong{display:block;margin-bottom:6px}
+  table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+  th,td{border:1px solid #d9e1e7;padding:6px;text-align:center}
+  th{background:#f0f4f7}
+  td input{width:100%;min-width:55px;padding:5px;border:1px solid #d2dbe2;border-radius:6px}
+  .status{margin-top:8px;padding:8px;border-radius:8px;font-size:12px;background:#f4f6f8}
+  .ok{background:#e8f4ea}.bad{background:#fff0ef}
+  .tools{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .toolbox{border:1px dashed #bfcbd4;border-radius:12px;padding:10px;background:#fcfdff}
+  .timer{font-variant-numeric:tabular-nums;font-size:26px;font-weight:750;text-align:center;padding:8px}
+  .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:#5c6b78}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle}
+  .footer{margin-top:14px;font-size:12px;color:#6a7884}
+  @media(max-width:1000px){.grid{grid-template-columns:1fr}.tasks,.controls,.tools{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Виртуалды зертхана: «Энергия ұғымы және сақталу заңы»</h1>
+  <p class="subtitle">Көлбеу жазықтықтағы шардың қозғалысы арқылы потенциалдық және кинетикалық энергияның түрленуін зерттеу.</p>
+
+  <div class="grid">
+    <section>
+      <div class="card">
+        <h2>1. Виртуалды қондырғы</h2>
+        <div class="scene">
+          <svg id="labSvg" width="980" height="590" viewBox="0 0 980 590" aria-label="Көлбеу жазықтық">
+            <!-- scale: 1 m = 300 px; 1 cm = 3 px -->
+            <defs>
+              <linearGradient id="ground" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#d9e2e9"/>
+                <stop offset="1" stop-color="#c2ced8"/>
+              </linearGradient>
+              <linearGradient id="ramp" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#aebbc5"/>
+                <stop offset="1" stop-color="#8396a5"/>
+              </linearGradient>
+              <radialGradient id="ball" cx="35%" cy="30%">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset=".28" stop-color="#d9e4ea"/>
+                <stop offset="1" stop-color="#5d7382"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Ground -->
+            <rect x="70" y="500" width="840" height="38" rx="8" fill="url(#ground)" stroke="#8797a4"/>
+            <line x1="95" y1="500" x2="900" y2="500" stroke="#4d5e6b" stroke-width="3"/>
+
+            <!-- Ramp: fixed base = 2.40m, platform max h = 0.80m -->
+            <polygon points="150,500 870,500 870,260" fill="url(#ramp)" stroke="#617585" stroke-width="3"/>
+            <line x1="150" y1="500" x2="870" y2="260" stroke="#526774" stroke-width="6"/>
+            <line x1="150" y1="490" x2="858" y2="252" stroke="#e6edf2" stroke-width="2" opacity=".8"/>
+
+            <!-- Motion path -->
+            <line x1="170" y1="493" x2="850" y2="267" stroke="#415766" stroke-width="2" stroke-dasharray="8 8" opacity=".45"/>
+
+            <!-- Photogates, distance = 0.50m along the ramp -->
+            <g>
+              <line x1="650" y1="333" x2="650" y2="500" stroke="#22313b" stroke-width="4"/>
+              <line x1="674" y1="325" x2="674" y2="492" stroke="#22313b" stroke-width="4"/>
+              <text x="644" y="315" font-size="14" fill="#263944">A</text>
+              <text x="670" y="307" font-size="14" fill="#263944">B</text>
+              <text x="600" y="520" font-size="12" fill="#51616d">A–B: 0,50 м</text>
+            </g>
+
+            <!-- Vertical ruler: 0 to 1.00m; 1cm=3px -->
+            <g id="rulerV">
+              <rect x="92" y="200" width="34" height="300" fill="#fff" stroke="#667986"/>
+              <line x1="126" y1="500" x2="126" y2="200" stroke="#475965" stroke-width="2"/>
+              <text x="84" y="190" font-size="12" fill="#334957">1 м</text>
+              <text x="84" y="515" font-size="12" fill="#334957">0</text>
+            </g>
+            <g id="rulerTicks"></g>
+
+            <!-- Height measurement line -->
+            <line id="heightLine" x1="150" y1="500" x2="150" y2="500" stroke="#7a4f22" stroke-width="3" stroke-dasharray="6 5"/>
+            <line id="heightCap" x1="140" y1="500" x2="160" y2="500" stroke="#7a4f22" stroke-width="3"/>
+            <line id="heightTop" x1="140" y1="500" x2="160" y2="500" stroke="#7a4f22" stroke-width="3"/>
+
+            <!-- Ball -->
+            <circle id="ball" cx="150" cy="500" r="14" fill="url(#ball)" stroke="#344b5a" stroke-width="2"/>
+            <text id="ballLabel" x="142" y="532" font-size="13" fill="#344b5a">шар</text>
+
+            <!-- release marker -->
+            <circle id="releasePoint" cx="150" cy="500" r="5" fill="#8b5b2b"/>
+            <text x="118" y="560" font-size="13" fill="#5d6d78">Модель масштабы: 1 м = 300 px</text>
+          </svg>
+        </div>
+        <div class="legend">
+          <span><span class="dot" style="background:#7a4f22"></span>биіктікті өлшеу сызығы</span>
+          <span>A–B — уақыт өлшенетін аралық</span>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h2>2. Басқару және өлшеу</h2>
+        <div class="controls">
+          <div class="control">
+            <label for="height">Бастапқы биіктік реттегіші</label>
+            <input id="height" type="range" min="0.20" max="0.80" step="0.05" value="0.40">
+            <div class="mini">Нақты мән экранда жазылмайды — биіктікті сызғыштан анықтаңыз.</div>
+          </div>
+          <div class="control">
+            <label for="mass">Жүк түрі (массасын өлшеңіз)</label>
+            <select id="mass">
+              <option value="0.10">Жүк A</option>
+              <option value="0.15">Жүк B</option>
+              <option value="0.20" selected>Жүк C</option>
+              <option value="0.25">Жүк D</option>
+              <option value="0.30">Жүк E</option>
+            </select>
+            <button id="weighBtn" class="secondary" style="margin-top:8px">Массаны өлшеу</button>
+            <div id="massReadout" class="readout" style="display:none"></div>
+          </div>
+          <div class="control">
+            <label>Қозғалыс</label>
+            <div class="row">
+              <button id="runBtn">Шарды жіберу</button>
+              <button id="resetBtn" class="secondary">Қалпына келтіру</button>
+            </div>
+            <div id="motionStatus" class="readout">Шар бастапқы нүктеде тұр.</div>
+          </div>
+          <div class="control">
+            <label>Секундомер: A–B аралығы</label>
+            <div class="timer" id="timer">0,000 с</div>
+            <div class="row">
+              <button id="startStopBtn" class="secondary">Қолмен өлшеу</button>
+              <button id="clearTimerBtn" class="secondary">Тазалау</button>
+            </div>
+            <div class="mini">A–B аралығының модельдегі ұзындығы: 0,50 м. v = s/t.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside>
+      <div class="card">
+        <h2>3. Теориялық негіз</h2>
+        <div class="formula"><b>Eₖ = m v² / 2</b></div>
+        <div class="formula"><b>Eₚ = mgh</b></div>
+        <div class="formula"><b>Eₘ = Eₖ + Eₚ</b></div>
+        <div class="formula"><b>ε = |Eₘ,бастапқы − Eₘ,соңғы| / Eₘ,бастапқы × 100%</b></div>
+        <p class="mini">Зертханада g = 9,8 м/с². Нәтижелерді өзіңіз есептеңіз.</p>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h2>4. Тәжірибені тіркеу</h2>
+        <div class="tasks">
+          <div class="task">
+            <strong>1-тапсырма: биіктіктің әсері</strong>
+            <div class="mini">Масса тұрақты. 5 түрлі h үшін өлшеулер жүргізіп, Eₚ(h), Eₖ(h), Eₘ(h) графиктерін талдаңыз.</div>
+            <table id="task1">
+              <thead><tr><th>№</th><th>m, кг</th><th>h, м</th><th>t, с</th><th>v, м/с</th><th>Eₚ, Дж</th><th>Eₖ, Дж</th><th>Eₘ, Дж</th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <button class="secondary" id="check1" style="margin-top:8px">Енгізілген мәндерді тексеру</button>
+            <div id="check1status" class="status">Алдымен өлшеулерді енгізіңіз.</div>
+          </div>
+
+          <div class="task">
+            <strong>2-тапсырма: массаның әсері</strong>
+            <div class="mini">Биіктік тұрақты. 5 түрлі масса үшін өлшеулер жүргізіп, Eₚ(m), Eₖ(m), Eₘ(m) графиктерін талдаңыз.</div>
+            <table id="task2">
+              <thead><tr><th>№</th><th>m, кг</th><th>h, м</th><th>t, с</th><th>v, м/с</th><th>Eₚ, Дж</th><th>Eₖ, Дж</th><th>Eₘ, Дж</th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <button class="secondary" id="check2" style="margin-top:8px">Енгізілген мәндерді тексеру</button>
+            <div id="check2status" class="status">Алдымен өлшеулерді енгізіңіз.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h2>5. Графиктер</h2>
+        <div class="row">
+          <button id="graph1">1-тапсырма графигі</button>
+          <button id="graph2" class="secondary">2-тапсырма графигі</button>
+        </div>
+        <canvas id="chart" width="600" height="300" style="width:100%;margin-top:12px;border:1px solid #d9e1e7;border-radius:10px"></canvas>
+        <div id="chartCaption" class="mini" style="margin-top:8px">График салу үшін кестеге сандық деректерді енгізіңіз.</div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <h2>6. Бақылау сұрақтары</h2>
+        <ol style="margin:0;padding-left:20px;font-size:13px;line-height:1.55">
+          <li>Энергия дегеніміз не және оның СИ жүйесіндегі өлшем бірлігі қандай?</li>
+          <li>Кинетикалық энергия қандай формуламен анықталады?</li>
+          <li>Потенциалдық энергия қандай физикалық шамаларға тәуелді?</li>
+          <li>Механикалық энергия дегеніміз не?</li>
+          <li>Энергияның сақталу заңы қалай тұжырымдалады?</li>
+          <li>Дене төмен қарай қозғалғанда потенциалдық және кинетикалық энергия қалай өзгереді?</li>
+          <li>Неліктен нақты тәжірибеде механикалық энергия дәл бірдей болмауы мүмкін?</li>
+          <li>Механикалық энергияның сақталуын тәжірибе арқылы қалай тексеруге болады?</li>
+          <li>Масса екі есе артқанда, h және v өзгермесе, Eₖ және Eₚ қалай өзгереді?</li>
+          <li>Энергияның бір түрден екінші түрге түрленуіне мысал келтіріңіз.</li>
+        </ol>
+      </div>
+    </aside>
+  </div>
+
+  <div class="footer">
+    Негіз: «Энергия ұғымы және сақталу заңы» зертханалық жұмысының берілген нұсқаулығы. Модель идеалдандырылған; үйкеліс параметрі тәжірибелік айырмашылықты көрсету үшін аз мөлшерде ескеріледі.
+  </div>
+</div>
+
+<script>
+const g = 9.8;
+const baseX=150, groundY=500, maxH=0.80, maxPx=240;  // 300 px per meter
+const slopeDx=720, slopeDy=240;
+const ball = document.getElementById('ball');
+const releasePoint = document.getElementById('releasePoint');
+const heightInput = document.getElementById('height');
+const massSelect = document.getElementById('mass');
+const motionStatus = document.getElementById('motionStatus');
+const timerEl = document.getElementById('timer');
+const massReadout = document.getElementById('massReadout');
+
+// Draw a 1.00 m vertical ruler at the exact model scale: 1 m = 300 px, 1 cm = 3 px.
+(function drawRulerTicks(){
+  const gR = document.getElementById('rulerTicks');
+  for(let cm=0; cm<=100; cm++){
+    const y = 500 - cm*3;
+    const major = cm % 10 === 0;
+    const medium = cm % 5 === 0;
+    const len = major ? 13 : (medium ? 9 : 5);
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',126-len);
+    line.setAttribute('x2',126);
+    line.setAttribute('y1',y);
+    line.setAttribute('y2',y);
+    line.setAttribute('stroke','#4d5f6b');
+    line.setAttribute('stroke-width', major ? 1.6 : 1);
+    gR.appendChild(line);
+    if(major && cm < 100){
+      const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x',75); t.setAttribute('y',y+4);
+      t.setAttribute('font-size','10'); t.setAttribute('fill','#52646f');
+      t.textContent = (cm/100).toFixed(1).replace('.',',') + ' м';
+      gR.appendChild(t);
+    }
+  }
+})(); 
+
+let running=false, animId=null, lastTime=0, ballPos=0;
+let gateStart=null, gateStop=null, gateTime=0, manualInterval=null, manualStart=null;
+
+function fmt(x,n=3){ return Number(x).toFixed(n).replace('.',','); }
+function hValue(){ return parseFloat(heightInput.value); }
+function mValue(){ return parseFloat(massSelect.value); }
+
+function rampPoint(s){ // s in 0..1 from bottom to top
+  const x = baseX + slopeDx*s;
+  const y = groundY - slopeDy*s;
+  return {x,y};
+}
+function setBallAt(s){
+  const p = rampPoint(s);
+  ball.setAttribute('cx',p.x);
+  ball.setAttribute('cy',p.y-14);
+  releasePoint.setAttribute('cx',p.x);
+  releasePoint.setAttribute('cy',p.y);
+}
+function drawHeight(){
+  const h=hValue();
+  const y=groundY - (h/maxH)*maxPx;
+  const pTop=rampPoint(h/maxH);
+  const xBottom=baseX;
+  document.getElementById('heightLine').setAttribute('x1',xBottom);
+  document.getElementById('heightLine').setAttribute('y1',groundY);
+  document.getElementById('heightLine').setAttribute('x2',xBottom);
+  document.getElementById('heightLine').setAttribute('y2',y);
+  document.getElementById('heightCap').setAttribute('y1',groundY);
+  document.getElementById('heightCap').setAttribute('y2',groundY);
+  document.getElementById('heightTop').setAttribute('y1',y);
+  document.getElementById('heightTop').setAttribute('y2',y);
+  setBallAt(h/maxH);
+  motionStatus.textContent='Шар бастапқы нүктеде тұр. Биіктікті сызғыштан анықтаңыз.';
+}
+heightInput.addEventListener('input',drawHeight);
+
+document.getElementById('weighBtn').addEventListener('click',()=>{
+  massReadout.style.display='block';
+  massReadout.innerHTML='Өлшеу нәтижесі: <b>'+fmt(mValue(),2)+' кг</b><br><span class="mini">Мәнді 2-кесте/3-кестеге өзіңіз жазыңыз.</span>';
+});
+
+document.getElementById('resetBtn').addEventListener('click',()=>{
+  cancelAnimationFrame(animId); running=false; ballPos=0; gateStart=null; gateStop=null;
+  timerEl.textContent='0,000 с'; motionStatus.textContent='Шар бастапқы нүктеде тұр.';
+  drawHeight();
+});
+
+function gatePositions(){
+  // screen positions of A/B on the ramp, approx matching the drawn gates.
+  return {A:.695, B:.728};
+}
+function runMotion(){
+  if(running) return;
+  running=true; ballPos=hValue()/maxH; lastTime=performance.now();
+  gateStart=null; gateStop=null;
+  motionStatus.textContent='Шар қозғалып жатыр…';
+  const gates=gatePositions();
+  function step(now){
+    const dt=(now-lastTime)/1000; lastTime=now;
+    // Accelerate from rest down the incline using a modest friction correction.
+    const h=hValue();
+    const a = g*Math.sin(Math.atan2(h,2.40)) * 0.965; 
+    // convert linear acceleration to normalized ramp position per second^2
+    const rampLen=Math.sqrt(2.40**2+h**2);
+    const dist = Math.min(rampLen, 0.5* a * Math.max(0,(now - (lastTime-dt*1000))/1000)**2);
+    // Use total elapsed from start instead for stability:
+    const t=(now-startNow)/1000;
+    const traveled=Math.min(rampLen, 0.5*a*t*t + 0.0005*t);
+    ballPos=Math.max(0, h/maxH - traveled/rampLen * (h/maxH));
+    if(ballPos < gates.A && gateStart===null) gateStart=now;
+    if(ballPos < gates.B && gateStart!==null && gateStop===null){
+      gateStop=now;
+      gateTime=(gateStop-gateStart)/1000;
+      timerEl.textContent=fmt(gateTime,3)+' с';
+    }
+    setBallAt(ballPos);
+    if(ballPos>0.001){ animId=requestAnimationFrame(step); }
+    else { running=false; motionStatus.textContent='Қозғалыс аяқталды. A–B аралығының уақытын бақылап, v=s/t бойынша есептеңіз.'; }
+  }
+  const startNow=performance.now();
+  // redefine animation with closure using startNow
+  function loop(now){
+    const t=(now-startNow)/1000;
+    const h=hValue(), rampLen=Math.sqrt(2.40**2+h**2);
+    const a=g*Math.sin(Math.atan2(h,2.40))*0.965;
+    const traveled=Math.min(rampLen,0.5*a*t*t);
+    const currentDist=Math.min(rampLen,traveled);
+    ballPos=Math.max(0,h/maxH-currentDist/rampLen*(h/maxH));
+    const gates=gatePositions();
+    if(ballPos<gates.A && gateStart===null) gateStart=now;
+    if(ballPos<gates.B && gateStart!==null && gateStop===null){
+      gateStop=now; gateTime=(gateStop-gateStart)/1000; timerEl.textContent=fmt(gateTime,3)+' с';
+    }
+    setBallAt(ballPos);
+    if(ballPos>0.001){ animId=requestAnimationFrame(loop); }
+    else {running=false;motionStatus.textContent='Қозғалыс аяқталды. Уақытты пайдаланып v=s/t есептеңіз.';}
+  }
+  animId=requestAnimationFrame(loop);
+}
+document.getElementById('runBtn').addEventListener('click',runMotion);
+
+document.getElementById('startStopBtn').addEventListener('click',()=>{
+  if(manualInterval===null){
+    manualStart=performance.now();
+    document.getElementById('startStopBtn').textContent='Тоқтату';
+    manualInterval=setInterval(()=>{
+      timerEl.textContent=fmt((performance.now()-manualStart)/1000,3)+' с';
+    },20);
+  }else{
+    clearInterval(manualInterval); manualInterval=null;
+    document.getElementById('startStopBtn').textContent='Қолмен өлшеу';
+  }
+});
+document.getElementById('clearTimerBtn').addEventListener('click',()=>{
+  gateTime=0; timerEl.textContent='0,000 с';
+  if(manualInterval!==null){clearInterval(manualInterval);manualInterval=null;document.getElementById('startStopBtn').textContent='Қолмен өлшеу';}
+});
+
+// Tables
+function makeTable(id){
+  const tbody=document.querySelector('#'+id+' tbody');
+  for(let i=1;i<=5;i++){
+    const tr=document.createElement('tr');
+    tr.innerHTML='<td>'+i+'</td>'+['m','h','t','v','ep','ek','em'].map(k=>'<td><input type="number" step="any" data-k="'+k+'"></td>').join('');
+    tbody.appendChild(tr);
+  }
+}
+makeTable('task1'); makeTable('task2');
+
+function checkTable(id,statusId){
+  const rows=[...document.querySelectorAll('#'+id+' tbody tr')];
+  let good=0,total=0;
+  rows.forEach(r=>{
+    const vals={};
+    r.querySelectorAll('input').forEach(inp=>vals[inp.dataset.k]=parseFloat(inp.value));
+    if(!['m','h','v','ep','ek','em'].every(k=>Number.isFinite(vals[k]))) return;
+    total++;
+    const ep=vals.m*g*vals.h, ek=vals.m*vals.v*vals.v/2, em=ep+ek;
+    const ok=Math.abs(vals.ep-ep)<0.03 && Math.abs(vals.ek-ek)<0.03 && Math.abs(vals.em-em)<0.03;
+    if(ok)good++;
+  });
+  const el=document.getElementById(statusId);
+  if(total===0){el.className='status bad';el.textContent='Жолдарға m, h, v және энергия мәндерін енгізіңіз.';return;}
+  el.className='status '+(good===total?'ok':'bad');
+  el.textContent='Тексерілген жолдар: '+good+'/'+total+'. Формулалар: Eₚ=mgh, Eₖ=mv²/2, Eₘ=Eₚ+Eₖ.';
+}
+document.getElementById('check1').addEventListener('click',()=>checkTable('task1','check1status'));
+document.getElementById('check2').addEventListener('click',()=>checkTable('task2','check2status'));
+
+const chart=document.getElementById('chart'), ctx=chart.getContext('2d');
+function drawChart(task){
+  ctx.clearRect(0,0,chart.width,chart.height);
+  const id=task===1?'task1':'task2';
+  const rows=[...document.querySelectorAll('#'+id+' tbody tr')];
+  const data=[];
+  rows.forEach((r,i)=>{
+    const inputs=[...r.querySelectorAll('input')];
+    const v={};
+    inputs.forEach(inp=>v[inp.dataset.k]=parseFloat(inp.value));
+    const x=task===1?v.h:v.m;
+    if(Number.isFinite(x)&&Number.isFinite(v.ep)&&Number.isFinite(v.ek)&&Number.isFinite(v.em)) data.push({i:i+1,x,ep:v.ep,ek:v.ek,em:v.em});
+  });
+  if(data.length<2){
+    document.getElementById('chartCaption').textContent='Кемінде 2 толық жол енгізілгеннен кейін график салынады.';
+    return;
+  }
+  const pad={l:55,r:20,t:30,b:45};
+  const W=chart.width-pad.l-pad.r,H=chart.height-pad.t-pad.b;
+  const xmin=Math.min(...data.map(d=>d.x)), xmax=Math.max(...data.map(d=>d.x));
+  const ymax=Math.max(...data.flatMap(d=>[d.ep,d.ek,d.em]))*1.15;
+  const X=x=>pad.l+(x-xmin)/(Math.max(1e-9,xmax-xmin))*W;
+  const Y=y=>pad.t+H-(y/ymax)*H;
+  ctx.strokeStyle='#7d8d98'; ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(pad.l,pad.t);ctx.lineTo(pad.l,pad.t+H);ctx.lineTo(pad.l+W,pad.t+H);ctx.stroke();
+  ctx.fillStyle='#334957';ctx.font='12px Segoe UI';
+  ctx.fillText(task===1?'h, м':'m, кг',pad.l+W-35,pad.t+H+32);
+  ctx.save();ctx.translate(16,pad.t+H/2);ctx.rotate(-Math.PI/2);ctx.fillText('E, Дж',0,0);ctx.restore();
+  const series=[['Eₚ','ep'],['Eₖ','ek'],['Eₘ','em']];
+  series.forEach((s,si)=>{
+    ctx.beginPath();
+    data.forEach((d,j)=>{const xx=X(d.x),yy=Y(d[s[1]]);if(j===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy);});
+    ctx.strokeStyle=['#3c6e8f','#8b6b3f','#48545f'][si];ctx.lineWidth=2;ctx.stroke();
+    data.forEach(d=>{ctx.beginPath();ctx.fillStyle=['#3c6e8f','#8b6b3f','#48545f'][si];ctx.arc(X(d.x),Y(d[s[1]]),3.5,0,Math.PI*2);ctx.fill();});
+    ctx.fillStyle=['#3c6e8f','#8b6b3f','#48545f'][si];ctx.fillText(s[0],pad.l+10+si*65,pad.t-10);
+  });
+  document.getElementById('chartCaption').textContent=(task===1?'1-тапсырма: Eₚ(h), Eₖ(h), Eₘ(h)':'2-тапсырма: Eₚ(m), Eₖ(m), Eₘ(m)')+' графигі.';
+}
+document.getElementById('graph1').addEventListener('click',()=>drawChart(1));
+document.getElementById('graph2').addEventListener('click',()=>drawChart(2));
+
+drawHeight();
+</script>
+</body>
+</html>
