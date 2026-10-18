@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="kk"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Виртуалды зертхана — Энергия ұғымы және сақталу заңы</title>
+<style>
+:root{--bg:#eef2f6;--ink:#14202b;--mut:#586878;--br:#d3dde6;--pri:#1f5f8b;--ms:#e7f1f9;--cl:#fdf0e1;--ok:#dff2e3;--bd:#fde4e1}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 system-ui,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.w{max-width:1280px;margin:auto;padding:16px}
+h1{font-size:clamp(20px,3.2vw,28px);margin:0}
+.sub{color:var(--mut);margin:4px 0 14px;max-width:80ch}
+.card{background:#fff;border:1px solid var(--br);border-radius:12px;padding:14px;margin-bottom:14px}
+h2{font-size:17px;margin:0 0 10px;display:flex;gap:8px;align-items:center}
+h2 i{font:700 13px system-ui;background:var(--pri);color:#fff;border-radius:50%;width:26px;height:26px;display:grid;place-items:center;flex:none}
+.g{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.lab{display:grid;gap:14px;grid-template-columns:minmax(0,1.6fr) minmax(290px,1fr)}
+@media(max-width:900px){.lab{grid-template-columns:1fr}}
+svg{width:100%;height:auto;display:block;background:#f6f9fc;border-radius:8px}
+button,select,input,textarea{font:inherit;border:1px solid var(--br);border-radius:8px;padding:7px 9px;background:#fff;color:inherit}
+button{background:var(--pri);color:#fff;border:0;font-weight:600;cursor:pointer;min-height:38px}
+button.s{background:#e4ebf1;color:#22323f}
+button:disabled,select:disabled,input:disabled{opacity:.5;cursor:not-allowed}
+:focus-visible{outline:3px solid #e8a33d;outline-offset:1px}
+.f{display:grid;gap:6px;margin-bottom:10px}.f label{font-weight:600;font-size:13px}
+.rd{background:var(--ms);border:1px solid #cfe0ee;border-radius:8px;padding:8px;font-size:14px}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}
+.mu{color:var(--mut);font-size:13px}
+.fm{background:#f4f7fa;border-left:4px solid var(--pri);padding:6px 10px;margin:6px 0;border-radius:6px}
+.tw{overflow-x:auto;margin:6px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border:1px solid var(--br);padding:4px;text-align:center}
+.tm th{background:var(--ms)}.tc th{background:var(--cl)}
+td input{width:100%;min-width:64px;padding:5px}
+input.ok{background:var(--ok);border-color:#4f9d60}input.bad,input.inv{background:var(--bd);border-color:#d9604f}
+.st{margin-top:8px;padding:8px;border-radius:8px;background:#f2f5f8;font-size:13px}.st.ok{background:var(--ok)}.st.bad{background:var(--bd)}
+textarea{width:100%;min-height:52px;resize:vertical;margin:4px 0 10px}
+canvas{width:100%;height:auto;border:1px solid var(--br);border-radius:8px}
+.sw{font:700 28px ui-monospace,Consolas,monospace;text-align:center;margin:4px 0}
+ol,ul{margin:0;padding-left:20px}
+.b1{color:#1f5f8b;font-weight:700}.b2{color:#b8661a;font-weight:700}
+th.m{background:var(--ms)}th.c{background:var(--cl)}h3{font-size:15px;margin:12px 0 6px}</style></head><body><div class="w">
+<h1>Виртуалды зертхана: «Энергия ұғымы және сақталу заңы»</h1>
+<p class="sub">Көлбеу жазықтықпен төмен қозғалған шардың потенциалдық және кинетикалық энергиясының түрленуін зерттеңіз. Өлшеуді де, есептеуді де өзіңіз орындайсыз: бағдарлама тек тексеріп, бағыт береді.</p>
+<div class="g">
+<section class="card"><h2><i>1</i>Жұмыстың мақсаты</h2>
+<p>Механикалық энергияның негізгі түрлерін зерттеу, потенциалдық энергияның кинетикалық энергияға түрленуін бақылау және механикалық энергияның сақталу заңын тәжірибелік жолмен тексеру. Сонымен қатар энергияның массаға және дененің бастапқы биіктігіне тәуелділігін анықтау.</p>
+<label for="hyp"><b>Болжам</b> (тәжірибеге дейін): биіктік артқанда төменгі нүктедегі жылдамдық қалай өзгереді? Масса ше?</label>
+<textarea id="hyp" data-s="hyp"></textarea></section>
+<section class="card"><h2><i>2</i>Құрал-жабдықтар</h2>
+<p>Көлбеу жазықтық, қозғалыстағы шар, таразы, сызғыш, биіктікті өлшеуге арналған құрал, секундомер және жылдамдық датчигі, есептеу кестесі және график тұрғызуға арналған бағдарламалық құрал (виртуалды зертханада — оның интерактивті моделі). Қосымша: A–B уақыт датчиктері (аралығы 0,50 м).</p></section>
+</div>
+<section class="card"><h2><i>3</i>Теориялық дайындық</h2>
+<p>Энергия — дененің немесе денелер жүйесінің жұмыс атқару қабілетін сипаттайтын физикалық шама; СИ-дегі өлшем бірлігі — Джоуль (Дж). Механикалық энергия кинетикалық және потенциалдық энергиядан тұрады.</p>
+<div class="fm">Eₖ = mv²/2 (1) &nbsp;·&nbsp; Eₚ = mgh (2) &nbsp;·&nbsp; Eₘ = Eₖ + Eₚ (3) &nbsp;·&nbsp; Eₘ₁ = Eₘ₂ = const (4) &nbsp;·&nbsp; g ≈ 9,8 м/с²</div>
+<p><i>1-кесте. Зертханада қолданылатын негізгі физикалық шамалар</i></p>
+<div class="tw"><table><thead><tr><th class="m">Шама</th><th class="m">Белгіленуі</th><th class="m">Өлшем бірлігі (СИ)</th><th class="m">Негізгі өрнек</th></tr></thead><tbody><tr><td>Масса</td><td>m</td><td>кг</td><td>–</td></tr><tr><td>Биіктік</td><td>h</td><td>м</td><td>–</td></tr><tr><td>Жылдамдық</td><td>v</td><td>м/с</td><td>–</td></tr><tr><td>Кинетикалық энергия</td><td>Eₖ</td><td>Дж</td><td>mv²/2</td></tr><tr><td>Потенциалдық энергия</td><td>Eₚ</td><td>Дж</td><td>mgh</td></tr><tr><td>Механикалық энергия</td><td>Eₘ</td><td>Дж</td><td>Eₖ + Eₚ</td></tr></tbody></table></div>
+<p class="mu">Энергияның бір күйін (бастапқы немесе соңғы) ғана қосуға болады: бастапқы Eₚ мен соңғы Eₖ-ны қосып, бір күйдің Eₘ-і деуге болмайды. Бастапқы күйде Eₖ = 0, төменгі нүктеде (h = 0) Eₚ = 0. Нақты тәжірибеде үйкеліс пен ауа кедергісінің әсерінен механикалық энергияның бір бөлігі ішкі (жылулық) энергияға айналады, бірақ энергияның жалпы сақталу заңы бұзылмайды. Модельде үйкеліс жұмысы A = μmg·cosα·s, a = g(sinα − μcosα); μ тұрақты және аз, шар материалдық нүкте ретінде қарастырылады (домалау энергиясы ескерілмейді), ауа кедергісі жоқ.</p></section>
+<section class="card"><h2><i>4</i>Қондырғының сипаттамасы және тәжірибе жүргізу</h2>
+<p>Шар көлбеу жазықтықтың белгілі бір биіктігінен қозғалысқа келтіріледі. Бастапқы нүктедегі Eₚ = mgh формуласымен, төменгі нүктедегі Eₖ = mv²/2 формуласымен есептеледі. Жылдамдық виртуалды модельдегі датчиктен алынады. Массаны «Массаны өлшеу», биіктікті сызғыштан (көлденең бағыттаушы сызық бойынша) өзіңіз анықтаңыз; «Жолға жазу» m мен v көрсеткіштерін кестеге көшіреді.</p>
+<div class="g"><div><b>1-тапсырма. Бастапқы биіктікке байланысты энергияның түрленуін зерттеу</b><ol><li>Оқытушы берген нұсқаға сәйкес шардың массасын m және бастапқы биіктігін h орнатыңыз.</li><li>Бастапқы потенциалдық энергияны (2) формула бойынша есептеңіз.</li><li>Денені босатып, төменгі нүктедегі жылдамдығын v өлшеңіз.</li><li>Төменгі нүктедегі кинетикалық энергияны (1) формула бойынша есептеңіз.</li><li>Бастапқы және соңғы күйдің механикалық энергиясын (3) және энергияның салыстырмалы айырмасын анықтаңыз. Есептеулерді 2-кестеге және 6-кезеңге енгізіңіз.</li><li>Бес түрлі биіктік үшін өлшеулерді қайталаңыз; масса бірдей болуы тиіс.</li><li>Eₚ(h), Eₖ(h), Eₘ(h) тәуелділіктерін график түрінде бейнелеңіз.</li><li>Нәтижелерді талдап, түрлену мен сақталу туралы қорытынды жасаңыз.</li></ol></div>
+<div><b>2-тапсырма. Дененің массасына байланысты энергияның өзгеруін зерттеу</b><ol><li>Бастапқы биіктікті h тұрақты етіп орнатыңыз («Биіктікті құлыптау») және бес түрлі масса таңдаңыз.</li><li>Әр масса үшін бастапқы потенциалдық энергияны (2) формула арқылы есептеңіз.</li><li>Шарды жіберіп, жылдамдықты виртуалды модельден алыңыз.</li><li>Әр тәжірибе үшін Eₖ-ны (1) және Eₘ-ді (3) формула бойынша есептеңіз.</li><li>Нәтижелерді 3-кестеге енгізіңіз. Биіктік барлық тәжірибеде тұрақты болуы тиіс.</li><li>Eₚ(m), Eₖ(m), Eₘ(m) графиктерін тұрғызыңыз.</li><li>Масса артқанда энергия шамаларының қалай өзгеретінін талдап, қорытынды жасаңыз.</li></ol></div></div></section>
+<div class="lab">
+<section class="card"><svg id="sc" viewBox="0 0 980 580" role="img" aria-label="Көлбеу жазықтық, сызғыш, A–B датчиктері және шар">
+<defs><radialGradient id="bg" cx=".35" cy=".3"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfdce6"/><stop offset="1" stop-color="#4f6677"/></radialGradient><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bac7d1"/><stop offset="1" stop-color="#8a9cab"/></linearGradient></defs>
+<rect x="60" y="500" width="860" height="40" rx="8" fill="#cfd9e1" stroke="#8a9aa7"/>
+<polygon points="150,500 870,500 870,260" fill="url(#rg)" stroke="#5f7482" stroke-width="2"/>
+<line x1="150" y1="500" x2="870" y2="260" stroke="#4a606e" stroke-width="5"/>
+<rect x="92" y="200" width="34" height="300" fill="#fff" stroke="#667986"/><g id="tk"></g>
+<line id="hg" stroke="#c07a2c" stroke-dasharray="6 5" stroke-width="1.5"/>
+<line id="hl" stroke="#c07a2c" stroke-width="3"/>
+<g id="gt"></g>
+<ellipse id="sh" rx="16" ry="4" fill="#000" opacity=".25"/>
+<circle id="bl" r="14" fill="url(#bg)" stroke="#2f4452" stroke-width="1.5"/>
+<circle id="r0" r="5" fill="#c07a2c"/><text id="t0" font-size="12" fill="#7a4f22">бастапқы нүкте</text>
+<circle cx="150" cy="500" r="5" fill="#2e8b57"/><text x="158" y="522" font-size="12" fill="#1f6b42">төменгі нүкте (h = 0)</text>
+<text x="700" y="570" font-size="12" fill="#586878">Масштаб: 1 м = 300 px</text></svg>
+<p class="mu">Оранж сызық — биіктікті өлшеу (сызғышқа көлденең бағыттаушы). A, B шамдары шар өткенде жасыл жанады.</p></section>
+<section class="card"><h2>Өлшеу құралдары</h2>
+<div class="f"><label for="task">Тапсырма</label><select id="task"><option value="1">1-тапсырма: биіктіктің әсері (m тұрақты)</option><option value="2">2-тапсырма: массаның әсері (h тұрақты)</option></select></div>
+<div class="f"><label for="mass">Жүк</label><select id="mass"><option value="A">Жүк A</option><option value="B">Жүк B</option><option value="C">Жүк C</option><option value="D">Жүк D</option><option value="E">Жүк E</option></select><button class="s" id="wb">Массаны өлшеу</button><div class="rd" id="mr" hidden aria-live="polite"></div></div>
+<div class="f"><label for="h">Бастапқы биіктік (реттегіш)</label><input type="range" id="h" min="0.2" max="0.8" step="0.05" value="0.4"><button class="s" id="lk" hidden>Биіктікті құлыптау</button><span class="mu">Мәні жазылмайды: сызғыштан анықтаңыз.</span></div>
+<div class="f"><label for="fr">Модель</label><select id="fr"><option value="0.012">Үйкеліс бар</option><option value="0">Үйкеліссіз (идеал)</option></select></div>
+<div class="row"><button id="go">Жіберу</button><button class="s" id="rp">Қайталау</button><button class="s" id="rs">Бастапқы күй</button></div>
+<p class="b1" style="margin:10px 0 2px">Өлшенген шамалар (құралдар)</p>
+<div class="sw" id="sw" aria-live="off">0,000 с</div><div class="rd" id="rd" aria-live="polite"></div>
+<div class="f" style="margin-top:10px"><label for="row">Көрсеткішті кесте жолына жазу</label><div class="row"><select id="row"></select><button id="rc">Жолға жазу</button></div><div class="mu" id="ms" aria-live="polite"></div></div></section>
+</div>
+<section class="card"><h2><i>5</i>Өлшеу және есептеу нәтижелерін тіркеу</h2>
+<p class="mu"><span class="b1">Көк</span> — өлшенетін шамалар (m, h, v): m мен v-ны «Жолға жазу» көшіреді, h-ты сызғыштан өзіңіз енгізіңіз. <span class="b2">Сары</span> — өзіңіз есептейтін энергиялар: Eₚ — бастапқы нүктеде (v = 0), Eₖ және Eₘ — төменгі нүктеде (h = 0). Ондық бөлшек үтірмен де, нүктемен де жазылады.</p>
+<p><i>2-кесте. Бастапқы биіктіктің энергияға әсерін зерттеу нәтижелері</i> (m тұрақты)</p><div id="m1"></div><button class="s" id="x1">Кестені тазарту</button>
+<p><i>3-кесте. Дененің массасының механикалық энергияға әсерін зерттеу нәтижелері</i> (h тұрақты)</p><div id="m2"></div><button class="s" id="x2">Кестені тазарту</button></section>
+<section class="card"><h2><i>6</i>Энергияның сақталуын сандық тексеру</h2>
+<div class="fm">ΔE = |Eₘ,бастапқы − Eₘ,соңғы| &nbsp;·&nbsp; ε = |Eₘ,бастапқы − Eₘ,соңғы| / Eₘ,бастапқы × 100 %</div>
+<p class="mu">Әр тәжірибе үшін бастапқы және соңғы күйдің механикалық энергиясын өзіңіз анықтап, ΔE мен ε-ді есептеңіз. ε неғұрлым аз болса, нәтиже идеал модельдегі сақталуға соғұрлым жақын. «Тексеру» 2-, 3-кестелердегі және осы кестедегі барлық ұяшықты тексеріп, дұрыс санды көрсетпей бағыт береді.</p>
+<b>1-тапсырма</b><div id="c1"></div><button id="k1">Тексеру</button><div class="st" id="st1" aria-live="polite">Алдымен есептеулерді енгізіңіз.</div>
+<p></p><b>2-тапсырма</b><div id="c2"></div><button id="k2">Тексеру</button><div class="st" id="st2" aria-live="polite">Алдымен есептеулерді енгізіңіз.</div></section>
+<section class="card"><h2><i>7</i>Графиктерді талдау</h2>
+<div class="row" style="margin-bottom:8px"><button id="g1">1-тапсырма: E(h)</button><button class="s" id="g2">2-тапсырма: E(m)</button></div>
+<canvas id="cv" width="720" height="380"></canvas><p class="mu" id="cap">График кестедегі деректерден салынады (кемінде 2 толық жол қажет).</p></section>
+<section class="card"><h2><i>8</i>Нәтижелерді талдау, қорытынды және бақылау сұрақтары</h2>
+<label for="anl"><b>Нәтижелерді талдау.</b> Eₚ мен Eₖ-ның бір-біріне айналу сипатын анықтаңыз; биіктік өзгергенде Eₚ және қозғалыс соңындағы Eₖ қалай өзгеретінін, әртүрлі массалар үшін графиктердің сипатын сипаттаңыз; бастапқы және соңғы Eₘ-ді салыстырып, эксперименттік қателікті (ε) көрсетіңіз:</label><textarea id="anl" data-s="anl" style="min-height:100px"></textarea>
+<label for="concl"><b>Қорытынды.</b> Тәжірибелік нәтижелер энергияның сақталу заңына қаншалықты сәйкес келетінін көрсетіңіз:</label><textarea id="concl" data-s="concl" style="min-height:100px"></textarea>
+<h3>Бақылау сұрақтары</h3><div id="qs"></div><button class="s" id="ra">Барлық деректерді тазарту</button></section>
+<p class="mu">Деректер осы браузерде автоматты сақталады. Модель: тұрақты үдеумен сырғу, a = g(sinα − μcosα).</p>
+</div>
+<script>
+const g=9.8,TH=Math.atan2(.8,2.4),SN=Math.sin(TH),CS=Math.cos(TH),PX=300,DA=.8,DB=1.3,RB=14,DEG=18.43;
+const LOADS={A:.2,B:.1,C:.3,D:.15,E:.25},KEY='energyLabV3';
+const $=i=>document.getElementById(i),f=(x,n=3)=>x.toFixed(n).replace('.',','),sa=(i,o)=>{for(const k in o)$(i).setAttribute(k,o[k])};
+const num=s=>{s=String(s||'').trim().replace(',','.');return /^(\d+\.?\d*|\.\d+)$/.test(s)?+s:NaN};
+const nr=()=>[0,1,2,3,4].map(()=>({})),def=()=>({rows:{1:nr(),2:nr()},att:{1:0,2:0},t:{},lock:null,h:.4});
+let S;try{S=Object.assign(def(),JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){S=def()}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+/* Геометрия: d — шардың тиіп тұрған нүктесіне дейінгі жол (м), төменгі нүктеден; h = d·sinα */
+const pt=d=>({x:150+d*CS*PX,y:500-d*SN*PX}),at=(p,k)=>({x:p.x-k*SN,y:p.y-k*CS});
+let tk='';for(let c=0;c<=100;c++){const y=500-3*c,l=c%10?c%5?5:9:13;tk+=`<line x1="${126-l}" x2="126" y1="${y}" y2="${y}" stroke="#4d5f6b" stroke-width="${c%10?1:1.6}"/>`;if(c%10==0)tk+=`<text x="88" y="${y+4}" font-size="10" text-anchor="end" fill="#52646f">${c==0?'0':c==100?'1':'0,'+c/10} м</text>`}
+$('tk').innerHTML=tk;
+let gh='';for(const[n,d]of[['A',DA],['B',DB]]){const p=pt(d),e=at(p,46);gh+=`<line x1="${p.x}" y1="${p.y}" x2="${e.x}" y2="${e.y}" stroke="#22313b" stroke-width="3"/><circle id="led${n}" cx="${e.x}" cy="${e.y}" r="6" fill="#b8c2ca" stroke="#22313b" stroke-width="2"/><text x="${e.x-5}" y="${e.y-11}" font-size="14" font-weight="700" fill="#22313b">${n}</text>`}
+const d1=at(pt(DA),70),d2=at(pt(DB),70),dm=at(pt((DA+DB)/2),82);
+gh+=`<line x1="${d1.x}" y1="${d1.y}" x2="${d2.x}" y2="${d2.y}" stroke="#415766" stroke-dasharray="4 3"/><circle cx="${d1.x}" cy="${d1.y}" r="3"/><circle cx="${d2.x}" cy="${d2.y}" r="3"/><text x="${dm.x}" y="${dm.y}" font-size="12" text-anchor="middle" fill="#415766" transform="rotate(-${DEG} ${dm.x} ${dm.y})">A–B = 0,50 м</text>`;
+$('gt').innerHTML=gh;
+const gate=(n,on)=>$('led'+n).setAttribute('fill',on?'#2e8b57':'#b8c2ca');
+function place(d){const p=pt(d),c=at(p,RB);sa('bl',{cx:c.x,cy:c.y});sa('sh',{cx:p.x+2,cy:p.y+2,transform:`rotate(-${DEG} ${p.x+2} ${p.y+2})`})}
+function guides(h){const p=pt(h/SN);sa('hg',{x1:p.x,y1:p.y,x2:126,y2:p.y});sa('hl',{x1:p.x,y1:500,x2:p.x,y2:p.y});sa('r0',{cx:p.x,cy:p.y});sa('t0',{x:p.x+8,y:p.y+22});place(h/SN)}
+/* Қозғалыс */
+let raf=0,running=false,last=null;
+function setUI(b){['mass','fr','task','lk','go'].forEach(i=>$(i).disabled=b);$('h').disabled=b||S.lock!=null}
+function clr(){last=null;$('sw').textContent='0,000 с';$('rd').textContent='Нәтиже шарды жібергеннен кейін пайда болады.';gate('A',0);gate('B',0)}
+function go(){
+  cancelAnimationFrame(raf);clr();
+  const h=+$('h').value,mu=+$('fr').value,m=LOADS[$('mass').value];
+  const a=g*(SN-mu*CS),d0=h/SN,T=Math.sqrt(2*d0/a),v=a*T;           // тыныштықтан, тұрақты үдеу
+  const tg=s=>d0>s?Math.sqrt(2*(d0-s)/a):null,tA=tg(DA),tB=tg(DB);   // датчик тек шардың жолында болса ғана іске қосылады
+  guides(h);running=true;setUI(true);$('ms').textContent='';$('rd').textContent='Қозғалыс жүріп жатыр…';
+  const t0=performance.now();
+  (function step(now){
+    const t=Math.max(0,Math.min((now-t0)/1000,T));
+    place(Math.max(d0-.5*a*t*t,0));$('sw').textContent=f(t)+' с';
+    gate('A',tA!==null&&t>=tA);gate('B',tB!==null&&t>=tB);
+    if(t<T){raf=requestAnimationFrame(step);return}
+    running=false;setUI(false);place(0);
+    last={m,h,t:+T.toFixed(3),v:+v.toFixed(3)};
+    const ab=tA!==null&&tB!==null?`Δt(A–B) = <b>${f(tA-tB)} с</b>`:d0<=DA?'A–B датчиктері шардың жолында емес: іске қосылмады.':'Шар тек A датчигінен өтті (B жоғарырақ): Δt өлшенбеді.';
+    $('rd').innerHTML=`t = <b>${f(last.t)} с</b><br>v (төменгі нүкте, h = 0) = <b>${f(last.v)} м/с</b><br>${ab}`;
+  })(t0);
+}
+function reset(){cancelAnimationFrame(raf);running=false;setUI(false);clr();guides(+$('h').value)}
+$('go').onclick=go;$('rp').onclick=go;$('rs').onclick=reset;
+$('h').oninput=()=>{if(running)return;clr();S.h=+$('h').value;save();guides(S.h)};
+$('mass').onchange=()=>{$('mr').hidden=true;clr()};$('fr').onchange=clr;
+$('wb').onclick=()=>{const r=$('mr');r.hidden=false;r.innerHTML='Таразы көрсеткіші: <b>m = '+f(LOADS[$('mass').value],2)+' кг</b>'};
+function lock(){S.lock=+$('h').value;$('h').disabled=true;$('lk').textContent='Биіктікті босату';save()}
+function unlock(){S.lock=null;$('h').disabled=false;$('lk').textContent='Биіктікті құлыптау';save()}
+$('lk').onclick=()=>S.lock==null?lock():unlock();
+$('task').onchange=()=>{const k=+$('task').value;if(k==1&&S.lock!=null)unlock();$('lk').hidden=k!=2};
+$('row').innerHTML=[1,2,3,4,5].map(i=>`<option value="${i}">Жол ${i}</option>`).join('');
+/* Кестелер: 2-, 3-кесте (құжаттағы формат) және ΔE, ε кестесі */
+const MAIN=[['m','Масса m, кг','m'],['h','Биіктік h, м','m'],['v','Жылдамдық v, м/с','m'],['p0','Eₚ, Дж','c'],['k1','Eₖ, Дж','c'],['m1','Eₘ, Дж','c']],CK=[['a','Eₘ,бастапқы, Дж','c'],['b','Eₘ,соңғы, Дж','c'],['d','ΔE, Дж','c'],['r','ε, %','c']];
+const ALL=MAIN.concat(CK).map(c=>c[0]),LBL={m:'m',h:'h',v:'v',p0:'Eₚ',k1:'Eₖ',m1:'Eₘ',a:'Eₘ,баст',b:'Eₘ,соңғы',d:'ΔE',r:'ε'};
+const tb=(k,cols)=>`<div class="tw"><table><thead><tr><th>Тәжірибе №</th>${cols.map(c=>`<th class="${c[2]}">${c[1]}</th>`).join('')}</tr></thead><tbody>${[0,1,2,3,4].map(i=>`<tr><td>${i+1}</td>${cols.map(c=>`<td><input inputmode="decimal" autocomplete="off" aria-label="${c[1]}, ${i+1}-жол" data-k="${k}" data-i="${i}" data-c="${c[0]}" value="${S.rows[k][i][c[0]]||''}"></td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+function render(){[1,2].forEach(k=>{$('m'+k).innerHTML=tb(k,MAIN);$('c'+k).innerHTML=tb(k,CK)})}
+document.addEventListener('input',e=>{const t=e.target,d=t.dataset;
+  if(d.c){S.rows[d.k][d.i][d.c]=t.value;t.classList.remove('ok','bad');const inv=t.value.trim()!==''&&isNaN(num(t.value));t.classList.toggle('inv',inv);t.title=inv?'Жарамсыз мән: тек оң сан (үтір немесе нүкте)':'';save()}
+  else if(d.s){S.t[d.s]=t.value;save()}});
+$('rc').onclick=()=>{
+  const k=+$('task').value,i=+$('row').value-1,M=$('ms'),Rw=S.rows[k][i];
+  if(!last)return M.textContent='Алдымен шарды жіберіп, қозғалыстың аяқталуын күтіңіз.';
+  if(k==2&&S.lock==null)return M.textContent='2-тапсырма: алдымен биіктікті құлыптаңыз (h тұрақты болуы керек).';
+  const o=S.rows[k].find((r,j)=>j!=i&&r.ref);
+  if(o&&k==1&&o.ref.m!=last.m)return M.textContent='1-тапсырмада масса тұрақты: басқа жолдардағы жүкті таңдаңыз.';
+  if(o&&k==2&&o.ref.h!=last.h)return M.textContent='2-тапсырмада биіктік тұрақты болуы керек.';
+  Object.assign(Rw,{m:f(last.m,2),v:f(last.v),ref:last});save();render();
+  M.textContent=`m және v көрсеткіштері ${i+1}-жолға жазылды. h мәнін сызғыштан өзіңіз анықтап енгізіңіз.`};
+/* Тексеру: дұрыс мәндер көрсетілмейді, кеңес қайталаған сайын толығады */
+const HT={m:['массаны таразы көрсеткішімен салыстырыңыз'],h:['Сызғыштың нөлдік белгісін және шкала бөлімдерін қайта тексер'],v:['жылдамдық датчигінің көрсеткішін қайта қараңыз'],
+p0:['(2): Eₚ = mgh, g = 9,8 м/с²','алдымен m·g, содан кейін нәтижені h-қа көбейтіңіз'],k1:['(1): Eₖ = mv²/2','v²-ты тауып, m-ге көбейтіп, 2-ге бөліңіз'],
+m1:['Eₘ = Eₖ + Eₚ — бір күйдің (төменгі нүктенің) энергиясы: онда h = 0, Eₚ қанша?','төменгі нүктеде Eₘ = Eₖ + Eₚ(h = 0)'],
+a:['бастапқыда v = 0: Eₘ,баст = Eₖ,баст + Eₚ,баст','Eₖ,баст = 0 болса, Eₘ,баст неге тең?'],b:['Eₘ,соңғы — төменгі нүктедегі механикалық энергия (2/3-кестедегі Eₘ)','Eₘ,соңғы = Eₖ,соңғы + Eₚ,соңғы'],
+d:['ΔE = |Eₘ,баст − Eₘ,соңғы|','айырманы модулімен алыңыз'],r:['ε = ΔE / Eₘ,баст · 100 %','ΔE-ні Eₘ,баст-қа бөліп, 100-ге көбейтіңіз']};
+const near=(a,b,t)=>Number.isFinite(a)&&Math.abs(a-b)<=Math.max(t,.02*Math.abs(b));
+function chk(k){
+  const A=S.att[k]=(S.att[k]||0)+1,out=[],el=$('st'+k);let ok=0,tot=0,rows=0;save();
+  document.querySelectorAll(`[data-k="${k}"]`).forEach(x=>x.classList.remove('ok','bad'));
+  S.rows[k].forEach((r,i)=>{
+    if(!ALL.some(c=>(r[c]||'').trim()))return;rows++;
+    const v={};ALL.forEach(c=>v[c]=num(r[c]));const bad=[];
+    const mk=(c,good)=>{tot++;good?ok++:bad.push(c);document.querySelectorAll(`[data-k="${k}"][data-i="${i}"][data-c="${c}"]`).forEach(x=>x.classList.add(good?'ok':'bad'))};
+    const inv=ALL.filter(c=>(r[c]||'').trim()&&isNaN(v[c]));
+    if(inv.length)out.push(`<b>${i+1}-жол:</b> жарамсыз формат (${inv.map(c=>LBL[c]).join(', ')}): тек оң сандар, үтір немесе нүкте.`);
+    const rf=r.ref;
+    if(!rf){['m','h','v'].forEach(c=>mk(c,false));out.push(`<b>${i+1}-жол:</b> өлшеу көрсеткіштері тіркелмеген: шарды жіберіп, «Жолға жазу» басыңыз.`)}
+    else{mk('m',near(v.m,rf.m,.005));mk('h',Number.isFinite(v.h)&&Math.abs(v.h-rf.h)<=.01);mk('v',near(v.v,rf.v,.02))}
+    // Есептеулер студенттің өз мәндері бойынша; бастапқы (v=0) және соңғы (h=0) күй бөлек
+    mk('p0',near(v.p0,v.m*g*v.h,.006));mk('k1',near(v.k1,.5*v.m*v.v*v.v,.006));mk('m1',near(v.m1,v.k1,.006));
+    mk('a',near(v.a,v.p0,.006));mk('b',near(v.b,v.m1,.006));mk('d',near(v.d,Math.abs(v.a-v.b),.006));mk('r',near(v.r,v.d/v.a*100,.5));
+    if(bad.length)out.push(`<b>${i+1}-жол:</b> тексеріңіз → `+bad.map(c=>LBL[c]+(A>1?` (${HT[c][A>2&&HT[c][1]?1:0]})`:'')).join('; '));
+    if(v.h>1.5||v.m>1)out.push(`${i+1}-жол: бірліктерді тексеріңіз (h — метр, m — килограмм).`);
+    if(v.k1>v.p0*1.03)out.push(`${i+1}-жол: төменгі нүктедегі Eₖ бастапқы Eₚ-дан артық болмауы керек: v мен бірлікті тексеріңіз.`);
+  });
+  if(!rows){el.className='st bad';el.textContent='Кестеге деректерді енгізіп, содан кейін тексеріңіз.';return}
+  el.className='st '+(ok==tot?'ok':'bad');
+  el.innerHTML=`Тексерілді: ${rows} жол, ${ok}/${tot} ұяшық дұрыс.`+(out.length?'<br>'+out.join('<br>')+(A==1?'<br><span class="mu">Дұрыс сан көрсетілмейді: қайта есептеп, тағы тексеріңіз. Қайталаған сайын түсініктеме толығырақ болады.</span>':''):'<br>Енгізілген барлық ұяшық дұрыс. Енді графикті салып талдаңыз.');
+}
+$('k1').onclick=()=>chk(1);$('k2').onclick=()=>chk(2);
+[1,2].forEach(k=>$('x'+k).onclick=()=>{if(!confirm(k+'-тапсырма деректері өшіріледі. Жалғастырасыз ба?'))return;S.rows[k]=nr();S.att[k]=0;if(k==2&&S.lock!=null)unlock();save();render();const s=$('st'+k);s.className='st';s.textContent='Деректер тазартылды.'});
+$('ra').onclick=()=>{if(confirm('Барлық деректер (кесте, болжам, жауаптар) өшіріледі. Жалғастырасыз ба?')){try{localStorage.removeItem(KEY)}catch(e){}location.reload()}};
+/* Графиктер: тек кестедегі толық жарамды жолдардан */
+const COL={p0:'#1f5f8b',k1:'#d9822b',m1:'#2e8b57'},GN={p0:'Eₚ,баст',k1:'Eₖ,соңғы',m1:'Eₘ,соңғы'};
+function graph(k){
+  const cv=$('cv'),c=cv.getContext('2d'),W=cv.width,H=cv.height,xk=k==1?'h':'m',cap=$('cap');c.clearRect(0,0,W,H);
+  const P=S.rows[k].map(r=>{const o={};['m','h','p0','k1','m1'].forEach(q=>o[q]=num(r[q]));return o}).filter(o=>[xk,'p0','k1','m1'].every(q=>Number.isFinite(o[q])));
+  if(P.length<2){cap.textContent=`${k}-тапсырма: график үшін кемінде 2 толық жол қажет (${k==1?'h':'m'}, Eₚ,баст, Eₖ,соңғы, Eₘ,соңғы).`;return}
+  P.sort((a,b)=>a[xk]-b[xk]);
+  let xa=P[0][xk],xb=P[P.length-1][xk];const pd=(xb-xa)*.08||.05;xa-=pd;xb+=pd;
+  const ym=Math.max(...P.flatMap(o=>[o.p0,o.k1,o.m1]))*1.1||1,L=64,T=34,w=W-L-16,h=H-T-48,X=x=>L+(x-xa)/(xb-xa)*w,Y=y=>T+h-y/ym*h;
+  c.font='12px system-ui';c.lineWidth=1;c.textAlign='right';
+  for(let i=0;i<=5;i++){const y=Y(ym*i/5);c.strokeStyle='#e1e8ee';c.beginPath();c.moveTo(L,y);c.lineTo(L+w,y);c.stroke();c.fillStyle='#4a5b68';c.fillText(f(ym*i/5,ym<1?3:2),L-6,y+4)}
+  c.textAlign='center';P.forEach(o=>{const x=X(o[xk]);c.strokeStyle='#eef2f5';c.beginPath();c.moveTo(x,T);c.lineTo(x,T+h);c.stroke();c.fillStyle='#4a5b68';c.fillText(f(o[xk],2),x,T+h+16)});
+  c.strokeStyle='#33444f';c.beginPath();c.moveTo(L,T);c.lineTo(L,T+h);c.lineTo(L+w,T+h);c.stroke();
+  Object.keys(COL).forEach((q,n)=>{c.strokeStyle=c.fillStyle=COL[q];c.lineWidth=2;c.beginPath();P.forEach((o,j)=>j?c.lineTo(X(o[xk]),Y(o[q])):c.moveTo(X(o[xk]),Y(o[q])));c.stroke();
+    P.forEach(o=>{c.beginPath();c.arc(X(o[xk]),Y(o[q]),4,0,7);c.fill()});c.textAlign='left';c.fillText('● '+GN[q],L+n*130,18)});
+  c.fillStyle='#14202b';c.textAlign='center';c.fillText(k==1?'h, м':'m, кг',L+w/2,H-8);c.save();c.translate(14,T+h/2);c.rotate(-Math.PI/2);c.fillText('E, Дж',0,0);c.restore();
+  cap.textContent=k==1?'Бағыттаушы сұрақтар: Eₚ,баст пен h арасындағы байланыс қандай? Eₖ,соңғы және Eₘ,соңғы нүктелері Eₚ,баст нүктелерінен қалай ерекшеленеді және неге?':'Бағыттаушы сұрақтар: m өскенде Eₚ,баст пен Eₖ,соңғы қалай өзгереді? Жылдамдық массаға тәуелді ме? Мұны деректерден қалай көруге болады?';
+}
+$('g1').onclick=()=>graph(1);$('g2').onclick=()=>graph(2);
+/* Бақылау сұрақтары */
+const Q=['Энергия дегеніміз не және оның СИ жүйесіндегі өлшем бірлігі қандай?','Кинетикалық энергия қандай формула бойынша анықталады?','Потенциалдық энергия қандай физикалық шамаларға тәуелді?','Механикалық энергия дегеніміз не?','Энергияның сақталу заңы қалай тұжырымдалады?','Дене төмен қарай қозғалғанда потенциалдық және кинетикалық энергия қалай өзгереді?','Неліктен нақты тәжірибеде механикалық энергияның шамалары дәл бірдей болмауы мүмкін?','Механикалық энергияның сақталуын тәжірибе арқылы қалай тексеруге болады?','Масса екі есе артқанда, биіктік пен жылдамдық өзгермесе, кинетикалық және потенциалдық энергия қалай өзгереді?','Энергияның бір түрден екінші түрге түрленуіне күнделікті өмірден мысал келтіріңіз.'];
+$('qs').innerHTML=Q.map((q,i)=>`<label for="q${i}"><b>${i+1}.</b> ${q}</label><textarea id="q${i}" data-s="q${i}"></textarea>`).join('');
+/* Іске қосу */
+render();document.querySelectorAll('[data-s]').forEach(x=>x.value=S.t[x.dataset.s]||'');
+$('h').value=S.lock!=null?S.lock:S.h;
+if(S.lock!=null){$('h').disabled=true;$('lk').textContent='Биіктікті босату';$('task').value=2}
+$('lk').hidden=$('task').value!=2;
+guides(+$('h').value);clr();
+</script></body></html>
